@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ZhungerModelStoreContainer" CdmEntityContainer="ZhungerEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="ZhungerModel.Admin">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employes">
+      <EntityTypeMapping TypeName="ZhungerModel.Employe">
+        <MappingFragment StoreEntitySet="Employes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="address" ColumnName="address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Food_callections">
+      <EntityTypeMapping TypeName="ZhungerModel.Food_callections">
+        <MappingFragment StoreEntitySet="Food_callections">
+          <ScalarProperty Name="PlacingDate" ColumnName="PlacingDate" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="r_id" ColumnName="r_id" />
+          <ScalarProperty Name="branch" ColumnName="branch" />
+          <ScalarProperty Name="food_name" ColumnName="food_name" />
+          <ScalarProperty Name="callection_time" ColumnName="callection_time" />
+          <ScalarProperty Name="e_id" ColumnName="e_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurants">
+      <EntityTypeMapping TypeName="ZhungerModel.Restaurant">
+        <MappingFragment StoreEntitySet="Restaurants">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="location" ColumnName="location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Statusup";
+}
+
+<h2>Status Update</h2>
+
+    <form action="" method="post">
+        <div class="form-group">
+            <select name="status" id="cars">
+                <option value="No Collected">No Collected"</option>
+                <option value="Collected">Collected</option>
+                <option value="Delivered">Delivered</option>
+
+            </select>
+        </div>
+        <input type="submit" value="Assign" class="btn btn-success" />
+    </form>
+    <div>
+        @Html.ActionLink("Logout", "Login")
+    </div>

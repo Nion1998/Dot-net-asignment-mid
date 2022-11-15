@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZhungerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Food_callections" Relationship="Self.FK_Food_callection_Employes" FromRole="Employes" ToRole="Food_callections" />
+  </EntityType>
+  <EntityType Name="Food_callections">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="r_id" Type="Int32" Nullable="false" />
+    <Property Name="branch" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="food_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="callection_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="e_id" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employe" Relationship="Self.FK_Food_callection_Employes" FromRole="Food_callections" ToRole="Employes" />
+    <NavigationProperty Name="Restaurant" Relationship="Self.FK_Food_callection_Restaurants" FromRole="Food_callections" ToRole="Restaurants" />
+    <Property Name="PlacingDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Food_callections" Relationship="Self.FK_Food_callection_Restaurants" FromRole="Restaurants" ToRole="Food_callections" />
+  </EntityType>
+  <Association Name="FK_Food_callection_Employes">
+    <End Role="Employes" Type="Self.Employe" Multiplicity="0..1" />
+    <End Role="Food_callections" Type="Self.Food_callections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Food_callections">
+        <PropertyRef Name="e_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_callection_Restaurants">
+    <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="1" />
+    <End Role="Food_callections" Type="Self.Food_callections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurants">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Food_callections">
+        <PropertyRef Name="r_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ZhungerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Employes" EntityType="Self.Employe" />
+    <EntitySet Name="Food_callections" EntityType="Self.Food_callections" />
+    <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+    <AssociationSet Name="FK_Food_callection_Employes" Association="Self.FK_Food_callection_Employes">
+      <End Role="Employes" EntitySet="Employes" />
+      <End Role="Food_callections" EntitySet="Food_callections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_callection_Restaurants" Association="Self.FK_Food_callection_Restaurants">
+      <End Role="Restaurants" EntitySet="Restaurants" />
+      <End Role="Food_callections" EntitySet="Food_callections" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

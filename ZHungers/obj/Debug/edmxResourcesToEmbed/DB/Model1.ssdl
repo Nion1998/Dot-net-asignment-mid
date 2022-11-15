@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ZhungerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="pass" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Food_callections">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="r_id" Type="int" Nullable="false" />
+    <Property Name="branch" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="food_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="callection_time" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="e_id" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+    <Property Name="PlacingDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Restaurants">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="location" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Food_callection_Employes">
+    <End Role="Employes" Type="Self.Employes" Multiplicity="0..1" />
+    <End Role="Food_callections" Type="Self.Food_callections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Food_callections">
+        <PropertyRef Name="e_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Food_callection_Restaurants">
+    <End Role="Restaurants" Type="Self.Restaurants" Multiplicity="1" />
+    <End Role="Food_callections" Type="Self.Food_callections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurants">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Food_callections">
+        <PropertyRef Name="r_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ZhungerModelStoreContainer">
+    <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employes" EntityType="Self.Employes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Food_callections" EntityType="Self.Food_callections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Restaurants" EntityType="Self.Restaurants" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Food_callection_Employes" Association="Self.FK_Food_callection_Employes">
+      <End Role="Employes" EntitySet="Employes" />
+      <End Role="Food_callections" EntitySet="Food_callections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Food_callection_Restaurants" Association="Self.FK_Food_callection_Restaurants">
+      <End Role="Restaurants" EntitySet="Restaurants" />
+      <End Role="Food_callections" EntitySet="Food_callections" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

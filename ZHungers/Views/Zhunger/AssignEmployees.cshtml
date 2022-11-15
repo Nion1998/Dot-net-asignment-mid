@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "AssignEmployees";
+}
+
+<h2>AssignEmployees</h2>
+
+
+@if (TempData["msg"] != null)
+{
+    @TempData["msg"]
+}
+
+<form action="" method="post">
+    <table class="">
+        <tr class="bg-info">
+            <td>Employee Names</td>
+            <td>Locations</td>
+        </tr>
+
+        @foreach (var cs in Model)
+        {
+            <tr>
+                <td><input type="checkbox" name="Employe[]" value="@cs.id" class="form-inline" /> @cs.name</td>
+                <td>@cs.address</td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Assign" class="btn btn-success" />
+</form>
+<div>
+    @Html.ActionLink("Logout", "Login")
+</div>
